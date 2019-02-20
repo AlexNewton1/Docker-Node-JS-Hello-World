@@ -10,13 +10,12 @@ node('master') {
 
        stage('Test'){
 
-         env.NODE_ENV = "test"
-
-         print "Environment will be : ${env.NODE_ENV}"
-
-         sh 'npm prune'
-         sh 'npm install'
-         sh 'npm test'
+		/* Requires the Docker Pipeline plugin to be installed */
+    	    docker.image('node:7-alpine').inside {
+        	stage('Test') {
+            		sh 'node --version'
+        	}
+    	    }
        }
 
        stage('Build Docker'){
@@ -29,10 +28,7 @@ node('master') {
        }
 
        stage('Cleanup'){
-
-         echo 'prune and cleanup'
-         sh 'npm prune'
-         sh 'rm node_modules -rf'
+		echo maybe cleanup here?
 	}
 
 
