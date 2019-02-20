@@ -26,6 +26,6 @@ node('master') {
        }
 
        stage('Cleanup'){
-		echo maybe cleanup here?
+		echo cleanup
 	}
 }
