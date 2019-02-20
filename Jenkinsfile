@@ -1,6 +1,5 @@
 node('master') {
 
-
     currentBuild.result = "SUCCESS"
 
     try {
@@ -15,7 +14,6 @@ node('master') {
 
          print "Environment will be : ${env.NODE_ENV}"
 
-         sh 'node -v'
          sh 'npm prune'
          sh 'npm install'
          sh 'npm test'
