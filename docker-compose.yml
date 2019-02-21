@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   nodeapp:
-    image: nodeapp
+    image: instance-1:5000/nodeapp
     build: .
     ports:
     - 8080:8080
