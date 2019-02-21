@@ -15,17 +15,15 @@ node('master') {
         }   
         
         stage('Build Docker Image'){
-            sh 'ls'
             sh 'docker-compose build --no-cache nodeapp'
         }
 
 	stage('Push to local repo'){
-	    sh 'Pushing to local repo...'
 	    sh 'docker push instance-1:5000/nodeapp'
 	}
         
         stage('Deploy Docker Image') {
-            sh 'docker service update --image instance-1:5000/nodeapp:latest nodeapp-service --force'  
+            sh 'docker service update --image instance-1:5000/nodeapp:latest nodeapp-swarm --force'  
         }
     } catch(e){
         currentBuild.result = "FAILURE"
@@ -34,3 +32,4 @@ node('master') {
         deleteDir()
     }
 }
+
